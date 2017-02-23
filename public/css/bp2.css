@@ -1,0 +1,108 @@
+body {
+	
+	background-color: #ECF0F5
+}
+legend {
+	padding-left: 8px;
+	margin-bottom: 5px;
+    font-size: 18px;
+}
+.content {
+	padding: 5px 10px;
+}
+.navbar-form .form-control {
+    border-radius: 3px;
+    width: 500px;
+}
+.container-fluid {
+	padding: 0px 10px;
+}
+.table-striped>tbody>tr:nth-of-type(odd){
+   background-color:#E4E7EC;
+}
+.col-lg-4, .col-sm-4 {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.col-md-4, .col-sm-4 {
+	padding-left: 0px;
+}
+.input-sm {
+	font-size: 18px;
+	padding: 0px 0px 0px 4px;
+}
+.box {
+	border-top: 0px;
+	margin-bottom: 10px;
+}
+.form-group {
+	margin-bottom: 5px;
+}
+.alert {
+	padding: 10px;
+	margin-bottom: 5px;
+}
+.modal-error{
+	background-color: red;
+	color: #FFF;
+}
+.modal-error .modal-title {
+	font-weight: bold;
+}
+.daterangepicker {
+	border-radius: 0px;
+}
+.box-header {
+	padding: 5px;
+}
+.box-body {
+	padding: 5px;
+}
+table thead tr .header {
+	background-image: url(../icon/bg.gif);
+	background-repeat: no-repeat;
+	background-position: center right;
+	padding-right: 15px !important;
+	cursor: pointer;
+}
+table thead tr .headerSortUp {
+	background-image: url(../icon/asc.gif);
+}
+table thead tr .headerSortDown {
+	background-image: url(../icon/desc.gif);
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 2px 2px 2px 2px;
+    vertical-align: middle;
+    border: 1px solid #666;
+}
+.success {
+	border: 1px solid #666;
+}
+table thead tr .headerSortDown, table thead tr .headerSortUp {
+	background-color: #8dd8d8 !important;
+}
+hr {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	color: #333;
+    border: 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+.select2-container--default .select2-selection--single, .select2-container--default .select2-selection--multiple {
+    background-color: #fff;
+    border: 1px solid #d2d6de;
+    border-radius: 0px;
+    min-height: 30px;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+	color: #555;
+}
+.select2-container .select2-selection--single .select2-selection__rendered {
+	padding: 0px ;
+	font-size: 18px;
+}
+.table-bordered th,
+.table-bordered td {
+  border: 1px solid #666 !important;
+}
