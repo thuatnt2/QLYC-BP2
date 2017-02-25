@@ -23,7 +23,7 @@ class ErrorDisplay
     public function displayAll($errors)
     {
         if (\Config::get("error_display.box"))
-            return \View::make('layout.error_display.all_errors', compact("errors"));
+            return \View::make('layouts.error_display.all_errors', compact("errors"));
         else
             return "";
     }
@@ -34,7 +34,7 @@ class ErrorDisplay
     public function displayIndividual($errors, $field)
     {
         if (\Config::get("error_display.line"))
-            return \View::make('layout.error_display.field_errors', compact("errors", "field"));
+            return \View::make('layouts.error_display.field_errors', compact("errors", "field"));
         else
             return "";
     }

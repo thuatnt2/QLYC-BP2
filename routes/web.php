@@ -32,7 +32,7 @@ Route::group(['middleware' => ['web']], function () {
 		Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 		
 		// Orders
-	    Route::resource('orders', 'OrderController');
+	    Route::resource('orders', 'Admin\OrderController');
 		// Units
 		Route::resource('units', 'UnitController');
 		// category

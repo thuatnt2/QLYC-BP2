@@ -15,7 +15,8 @@ class CreatePurposesTable extends Migration {
 		Schema::create('purposes', function(Blueprint $table) {
             $table->increments('id');
             $table->string('symbol');
-            $table->text('comment');
+            $table->string('group');
+            $table->text('description');
             $table->timestamps();
             $table->softDeletes();
         });

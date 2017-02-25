@@ -9,11 +9,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Bootstrap 3.3.5 -->
-    <link rel="stylesheet" href="{{ URL::asset('css/app.css') }}">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ URL::asset('css/font-awesome.min.css') }}">
+    <!-- Bootstrap 3.3.5 -->
+    <link rel="stylesheet" href="{{ URL::asset('css/app.css') }}">
     <style>
         body {
             font-family: 'Lato';
