@@ -1,7 +1,8 @@
   {!! Former::setOption('TwitterBootstrap3.labelWidths', ['large' => 4, 'small' => 4]) !!}
         {!! Former::open_for_files(action('OrderController@update', $order->id))->id('form-edit') !!}
         {{ method_field('PUT') }}
-        <!-- <fieldset> -->
+        <fieldset>
+        {!! Former::legend('Sửa yêu cầu List-XMCTB') !!}
         <div class="col-sm-4">
             {!! Former::text('created_at', 'Ngày yêu cầu')
                 ->required()
@@ -14,29 +15,17 @@
                 ->addClass('input-sm')
                 ->value($order->number_cv)
             !!}
-            <div class="form-group">
-                <label for="unit" class="control-label col-lg-4 col-sm-4">Đơn vị yêu cầu</label>
-                <div class="col-lg-8 col-sm-8">
-                    <select class="form-control input-sm" id="unit" name="unit">
-                        <optgroup label="Khối An ninh">
-                            @foreach ($unitSecurites as $index=>$unit)
-                                <option value="{{ $unit->id }}" {{ $unit->id == $order->unit_id ? "selected":""}}>{{ ucwords($unit->symbol) }}</option>
-                            @endforeach
-                        </optgroup>
-                        <optgroup label="Khối Cảnh sát">
-                            @foreach ($unitPolices as $index=>$unit)
-                                <option value="{{ $unit->id }}" {{ $unit->id == $order->unit_id ? "selected":""}}>{{ ucwords($unit->symbol) }}</option>
-                            @endforeach
-                        </optgroup>
-                    </select>
-                </div>
-            </div>
+            {!! Former::select('unit', 'Đơn vị yêu cầu')
+                ->options($units, $order->unit_id)
+                ->addClass('input-sm')
+            !!}
             {!! Former::text('number_cv_pa71', 'Số công văn PA71')
                 ->required()
                 ->addClass('input-sm')
                 ->value($order->number_cv_pa71)
             !!}
             {!! Former::text('order_name', 'Tên đối tượng')
+                ->required()
                 ->addClass('input-sm')
                 ->value($order->order_name)
             !!}
@@ -66,15 +55,20 @@
             @endforeach
             
             {!! Former::select('category', 'Loại đối tượng')
-                ->options($categories, isset($order->category_id) ? $order->category_id:"")
+                ->options($categories, $order->category_id)
                 ->addClass('input-sm')
             !!}
-            {!! Former::select('kind')->label('Tính chất')->options($kinds, isset($order->kind_id) ? $order->kind_id:"")->addClass('input-sm') !!}
-            {!! Former::select('purpose')->label('Mục đích yêu cầu')->options($purposes, $order->purpose_id)->addClass('input-sm') !!}
-            {!! Former::text('date_request', 'Thời gian yêu cầu')
-                ->addClass('input-sm daterange')
-                ->value(isset($order->date_begin) && isset($order->date_end) ? $order->date_begin->format('d/m/Y') .'-'. $order->date_end->format('d/m/Y'):"" )
+            {!! Former::select('kind')->label('Tính chất')->options($kinds, $order->kind_id)->addClass('input-sm') !!}
+            {!! Former::checkboxes('purpose[]','Mục đích yêu cầu')
+                ->checkboxes($purposes)
+                ->inline()
+                ->check($checked)
             !!}
+            {!! Former::text('date_request', 'Thời gian yêu cầu')
+                ->required()
+                ->addClass('input-sm daterange')
+                ->value($order->date_begin->format('d/m/Y') .'-'. $order->date_end->format('d/m/Y'))
+             !!}
             {!! Former::file('file','File đính kèm')->accept('doc', 'docx', 'xls', 'xlsx', 'pdf') !!}
         </div>
         <div class="col-sm-4">
@@ -99,13 +93,12 @@
                  <button type="reset" class="btn btn-default btn-sm"><i class="fa fa-refresh">&nbsp</i>Làm mới</button>
                  <button type="button" class="btn btn-danger btn-sm" onclick="hideForm()" ><i class="fa fa-reply">&nbsp</i>Hủy</button>
            </div>
-        </div>
-        <!-- </fieldset> -->
+            </div>
+        </fieldset>
         {!! Former::close() !!}
         <script>
         function hideForm() {
             $('#form-create').show();
-            $('#title-form').text('Form đăng ký');
             $('#form-edit').remove();
         }
       </script>

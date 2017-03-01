@@ -24,7 +24,6 @@
     {{-- Select2 --}}
     <link rel="stylesheet" href="{{ URL::asset('css/plugins/select2.min.css') }}">
 
-    <link rel="stylesheet" href="{{ URL::asset('css/bp2.css') }}">    
     @yield('css')
     <!-- Scripts -->
     <script>
@@ -149,7 +148,6 @@
 <script src="{{ URL::asset('js/plugins/select2.min.js') }}"></script>
 {{-- Table sorter --}}
 <script src="{{ URL::asset('js/plugins/jquery.tablesorter.min.js') }}"></script>
-<script src="{{ URL::asset('js/bp2.js') }}"></script>
 <script type="text/javascript">
     $(document).ready(function(){
 

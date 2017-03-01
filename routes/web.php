@@ -34,13 +34,13 @@ Route::group(['middleware' => ['web']], function () {
 		// Orders
 	    Route::resource('orders', 'Admin\OrderController');
 		// Units
-		Route::resource('units', 'UnitController');
+		Route::resource('units', 'Admin\UnitController');
 		// category
-		Route::resource('categories', 'CategoryController');
+		Route::resource('categories', 'Admin\CategoryController');
 		// kind
-		Route::resource('kinds', 'KindController');
+		Route::resource('kinds', 'Admin\KindController');
 		// ship
-		Route::resource('ships', 'ShipController');
+		Route::resource('ships', 'Admin\ShipController');
 		// 
 		Route::resource('user', 'UserController');
 		Route::post('update-status/{id}', ['as' => 'update.status', 'uses' => 'OrderController@updateStatus']);

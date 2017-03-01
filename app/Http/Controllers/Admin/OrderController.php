@@ -6,17 +6,29 @@ use App\Http\Controllers\Controller;
 
 use App\Order;
 use Illuminate\Http\Request;
+use App\Contracts\Repositories\OrderRepositoryInterface;
 
-class OrderController extends Controller {
+class OrderController extends Controller 
+{
+    protected $repository;
+    
+    public function __construct(OrderRepositoryInterface $repository)
+    {
+        $this->repository = $repository;
+    }
 
-	/**
+    /**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
 	public function index()
 	{
-		$orders = Order::all();
+		$orders = $this->repository->all();
+                
+                if(request()->wantsJson()) {
+                    return response()->json(compact('orders'));
+                }
 
 		return view('admin.orders.index', compact('orders'));
 	}
@@ -37,19 +49,9 @@ class OrderController extends Controller {
 	 * @param Request $request
 	 * @return Response
 	 */
-	public function store(OrderRequest $request)
+	public function store(OrderCreateRequest $request)
 	{
-		$order = new Order();
-
-		$order->user_id = $request->input("user_id");
-        $order->number_cv = $request->input("number_cv");
-        $order->number_cv_pa71 = $request->input("number_cv_pa71");
-        $order->order_name = $request->input("order_name");
-        $order->order_phone = $request->input("order_phone");
-        $order->customer_name = $request->input("customer_name");
-        $order->customer_phone = $request->input("customer_phone");
-
-		$order->save();
+		
 
 		return redirect()->action('Admin\OrderController@index')->with('message', 'Item created successfully.');
 	}
