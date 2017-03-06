@@ -29,7 +29,25 @@
 <div class="row">
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">Danh sách tính chất đối tượng</h3>
+            <!--<h3 class="box-title">Danh sách tính chất đối tượng</h3>-->
+            <div class="col-sm-3" >
+                <form class="form-horizontal" id="perPage">
+                    <div class="form-group">
+                        <label class="control-label col-lg-6 col-sm-6">Số bản ghi</label>
+                        <div class="col-lg-4 col-sm-4">
+                            <select class="form-control input-sm">
+                                <option value="10"{{ $kinds->perPage()==10 ? "selected":"" }}>10</option>
+                                <option value="25" {{ $kinds->perPage()==25 ? "selected":"" }}>25</option>
+                                <option value="50" {{ $kinds->perPage()==50 ? "selected":"" }}>50</option>
+                                <option value="100" {{ $kinds->perPage()==100 ? "selected":"" }}>100</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-5 col-sm-offset-4">
+                @include('pagination.limit_link', ['paginator' => $kinds])          
+            </div>  
         </div><!-- /.box-header -->
         <div class="box-body">
             <table id="sortTable" class="table table-bordered table-striped">

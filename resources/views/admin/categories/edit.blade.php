@@ -1,41 +1,24 @@
-@extends('layout.admin')
-
-@section('content')
-    <div class="page-header">
-        <h1>Categories / Edit </h1>
-    </div>
-
-    {!! \App\Libs\ErrorDisplay::getInstance()->displayAll($errors) !!}
-
-    <div class="row">
-        <div class="col-md-12">
-
-            <form action="{{ action('Admin\CategoryController@update', $category->id) }}" method="POST">
-                <input type="hidden" name="_method" value="PUT">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-                <div class="form-group">
-                    <label for="nome">ID</label>
-                    <p class="form-control-static">{{$category->id}}</p>
-                </div>
-                <div class="form-group">
-                     <label for="symbol">SYMBOL</label>
-                     <input type="text" name="symbol" class="form-control" value="{{ \App\Libs\ValueHelper::getOldInput($category,'symbol') }}"/>
-                     {!! \App\Libs\ErrorDisplay::getInstance()->displayIndividual($errors, "symbol") !!}
-                </div>
-                    <div class="form-group">
-                     <label for="description">DESCRIPTION</label>
-                     <textarea name="description" class="form-control">{{ \App\Libs\ValueHelper::getOldInput($category,'description') }}</textarea>
-                     {!! \App\Libs\ErrorDisplay::getInstance()->displayIndividual($errors, "description") !!}
-                </div>
-
-
-
-            <a class="btn btn-default" href="{{ action('Admin\CategoryController@index') }}">Back</a>
-            <button class="btn btn-primary" type="submit" >Save</a>
-            </form>
+	{!! Former::setOption('TwitterBootstrap3.labelWidths', ['large' => 4, 'small' => 4]) !!}
+    {!! Former::horizontal_open(action('CategoryController@update', $category->id))->id('form-edit') !!}
+    {{ method_field('PUT') }}
+    <fieldset>
+    {!! Former::legend('Form sửa loại đối tượng') !!}
+    <div class="col-sm-offset-3 col-sm-4">
+        {!! Former::text('description', 'Tên đơn vị')->required()->addClass('input-sm')->value($category->description); !!}
+        {!! Former::text('symbol', 'Ký hiệu')->required()->addClass('input-sm')->value($category->symbol); !!}
+        <div class="form-group">
+            <div class="col-lg-offset-4 col-sm-offset-4 col-lg-8 col-sm-8">
+                 <button type="submit" class="btn btn-success btn-small"><i class="fa fa-edit">&nbsp</i>Sửa</button>
+                 <button type="reset" class="btn btn-default btn-small"><i class="fa fa-refresh">&nbsp</i>Làm mới</button>
+                 <button type="button" class="btn btn-danger btn-small" onclick="hideForm()" ><i class="fa fa-reply">&nbsp</i>Hủy</button>
+            </div>
         </div>
-    </div>
-
-
-@endsection
+    </div>    
+    </fieldset>
+    {!! Former::close() !!}
+    <script>
+        function hideForm() {
+            $('#form-create').show();
+            $('#form-edit').remove();
+        }
+    </script>

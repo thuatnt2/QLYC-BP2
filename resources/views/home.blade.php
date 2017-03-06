@@ -1,5 +1,7 @@
 @extends('layouts.admin')
-
+@section('css')
+<link rel="stylesheet" href="{{ URL::asset('css/bp2.css') }}">
+@stop
 @section('content')
 <div class="container">
     <div class="row">
@@ -15,3 +17,7 @@
     </div>
 </div>
 @endsection
+@section('javascript')
+{{-- app.js --}}
+<script src="{{ URL::asset('js/bp2.js') }}"></script>
+@stop

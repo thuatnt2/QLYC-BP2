@@ -16,7 +16,8 @@ namespace App\Repositories\Eloquent;
 use App\Contracts\Repositories\OrderRepositoryInterface;
 use App\Repositories\Eloquent\BaseRepository;
 
-class OrderRepositoryEloquent extends BaseRepository implements OrderRepositoryInterface { 
+class OrderRepositoryEloquent extends BaseRepository implements OrderRepositoryInterface 
+{ 
     /**
      * Specify Model class name
      * 

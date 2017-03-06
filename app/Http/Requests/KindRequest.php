@@ -25,7 +25,33 @@ class KindRequest extends Request
     {
         return [
             "symbol" => "required",
-            "comment" => "required",
+            "description" => "required",
         ];
+    }
+    /**
+     * Overrite messages
+     * 
+     * @return array message
+     */
+    function messages()
+    {
+        return [
+            "symbol.required" => ":attribute bắt buộc",
+            "description.required" => ":attribute bắt buộc"
+        ];
+        
+    }
+    /**
+     * Overrite function attribute
+     * 
+     * @return array attributes
+     */
+    function attributes()
+    {
+        return [
+            "symbol" => "Ký hiệu",
+            "description" => "Tính chất đối tượng"
+        ];
+        
     }
 }

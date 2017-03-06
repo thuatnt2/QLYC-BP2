@@ -7,36 +7,28 @@ use App\Http\Controllers\Controller;
 use App\Kind;
 use Illuminate\Http\Request;
 use App\Contracts\Repositories\KindRepositoryInterface;
+use Illuminate\Support\Facades\Log;
 
 class KindController extends Controller
 {
     protected $repository;
-    
+    protected $attributes = ["symbol", "description"];
+
     public function __construct(KindRepositoryInterface $repository)
     {
         $this->repository = $repository;
     }
 
     /**
-     * Display a listing of the resource.
+     * Show the form for creating and Display a listing of the resource.
      *
      * @return Response
      */
     public function index()
     {
-            $kinds = $this->repository->all();
+            $kinds = $this->repository->orderBy('created_at')->paginate();
 
             return view('admin.kinds.index', compact('kinds'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-            return view('admin.kinds.create');
     }
 
     /**
@@ -47,29 +39,16 @@ class KindController extends Controller
      */
     public function store(KindRequest $request)
     {
-            $kind = new Kind();
+        try {
+            $this->repository->create($request->only($this->attributes));
+        } catch (\Exception $exc) {
+            Log::error($exc);
+            return redirect()->back()->withError('Store failed!');
+        }
+        
+        return redirect()->action('Admin\KindController@index')->withSuccess('Item created successfully.');
 
-            $kind->symbol = $request->input("symbol");
-    $kind->comment = $request->input("comment");
-
-            $kind->save();
-
-            return redirect()->action('Admin\KindController@index')->with('message', 'Item created successfully.');
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
-    {
-            $kind = Kind::findOrFail($id);
-
-            return view('admin.kinds.show', compact('kind'));
-    }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -78,8 +57,7 @@ class KindController extends Controller
      */
     public function edit($id)
     {
-            $kind = Kind::findOrFail($id);
-
+            $kind = $this->repository->find($id);
             return view('admin.kinds.edit', compact('kind'));
     }
 
@@ -92,14 +70,16 @@ class KindController extends Controller
      */
     public function update(KindRequest $request, $id)
     {
-            $kind = Kind::findOrFail($id);
+        try {
+            $this->repository->update($id, $request->only($this->attributes));
+            
+        } catch (Exception $exc) {
+            Log::error($exc);
+            
+            return redirect()->back()->withError('Update Fail');
+        }
 
-            $kind->symbol = $request->input("symbol");
-    $kind->comment = $request->input("comment");
-
-            $kind->save();
-
-            return redirect()->action('Admin\KindController@index')->with('message', 'Item updated successfully.');
+        return redirect()->action('Admin\KindController@index')->withSuccess('Item updated successfully.');
     }
 
     /**
@@ -110,10 +90,16 @@ class KindController extends Controller
      */
     public function destroy($id)
     {
-            $kind = Kind::findOrFail($id);
-            $kind->delete();
+        try {
+            $this->repository->delete($id);
+            
+        } catch (Exception $exc) {
+            Log::error($exc);
+            
+            return redirect()->back()->withError("Delete fail");
+        }
 
-            return redirect()->action('Admin\KindController@index')->with('message', 'Item deleted successfully.');
+        return redirect()->action('Admin\KindController@index')->with('error', 'Item deleted successfully.');
     }
 
 }
