@@ -24,7 +24,7 @@ class OrderController extends Controller
 	 */
 	public function index()
 	{
-		$orders = $this->repository->all();
+		$orders = $this->repository->paginate();
                 
                 if(request()->wantsJson()) {
                     return response()->json(compact('orders'));
