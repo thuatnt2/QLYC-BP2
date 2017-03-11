@@ -26,5 +26,16 @@ class OrderRepositoryEloquent extends BaseRepository implements OrderRepositoryI
     public function model() {
         return \App\Order::class;
     }
+    
+    public function orderPaginate($limit, $condition = '', $columns = array(), $method = 'paginate') {
+        
+        $this->with(['unit', 'kind', 'category', 'user', 'purpose']);
+        $this->orderBy('date_order');
+        if ($condition != '') {
+            $this->applyConditions(['purpose_id' => $condition]);
+        }
+        return  $this->paginate();
+        
+    }
 
 }

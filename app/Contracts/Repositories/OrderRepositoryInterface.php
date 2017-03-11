@@ -14,4 +14,5 @@ namespace App\Contracts\Repositories;
  */
 interface OrderRepositoryInterface  {
     //put your code here
+    public function orderPaginate($limit, $condition = '', $columns = ['*'], $method = 'paginate');
 }

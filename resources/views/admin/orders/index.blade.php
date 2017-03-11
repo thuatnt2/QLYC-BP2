@@ -4,7 +4,7 @@
 
 {{-- DateRangepicker --}}
 <link rel="stylesheet" href="{{ URL::asset('css/plugins/daterangepicker.css') }}">
-<link rel="stylesheet" href="{{ URL::asset('css/app.css') }}">
+<link rel="stylesheet" href="{{ URL::asset('css/bp2.css') }}">
 @stop
 
 @section('content')
@@ -15,13 +15,6 @@
         <div class="row">
             <div class="col-sm-11">
                 <span style="padding-left: 8px;font-size: 18px;" id="title-form">Form Đăng ký</span>
-           </div>
-            <div class="col-sm-1">
-                <form class="import-file" method="post" enctype="multipart/form-data" action="#">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <input type="file" id="import-order" name="file"  style="width: 0;height: 0;display: none;">
-                    <button class="btn btn-info btn-xs" type="button">Nhập từ excel</button>
-                </form>
            </div>
         </div>
         <hr>
@@ -216,5 +209,5 @@
 {{-- Inputmask --}}
 <script src="{{ URL::asset('js/plugins/jquery.inputmask.bundle.min.js') }}"></script>
 {{-- app.js --}}
-<script src="{{ URL::asset('js/app.js') }}"></script>
+<script src="{{ URL::asset('js/bp2.js') }}"></script>
 @stop

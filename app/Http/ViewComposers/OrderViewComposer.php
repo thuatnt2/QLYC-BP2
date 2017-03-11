@@ -33,13 +33,12 @@ class OrderViewComposer
         
         $unitPolices = $this->units->findByField('block', 'CS', ['id', 'symbol']);
         $unitSecurites = $this->units->findByField('block', 'AN', ['id', 'symbol']);
-        $units = $this->formatData($this->units->all(['id', 'symbol']));
         $categories = $this->formatData($this->categories->all(['id', 'symbol']));
         $kinds = $this->formatData($this->kinds->all(['id', 'symbol']));
         $users = $this->formatData($this->users->all(['id', 'fullname as symbol']));
         $purposes = $this->formatData($this->purposes->all(['id', 'symbol']));
         
-        $view->with(compact('units', 'categories', 'kinds', 'purposes', 'users', 'unitPolices', 'unitSecurites'));
+        $view->with(compact('categories', 'kinds', 'purposes', 'users', 'unitPolices', 'unitSecurites'));
     }
     
     public function formatData($items) {
