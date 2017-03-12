@@ -24,11 +24,9 @@ class OrderRequest extends Request
     public function rules()
     {
         return [
-            "user_id" => "required",
             "number_cv" => "required",
             "number_cv_pa71" => "required",
             "order_name" => "required",
-            "order_phone" => "required",
             "customer_name" => "required",
             "customer_phone" => "required",
         ];

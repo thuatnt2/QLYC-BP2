@@ -57,7 +57,7 @@ class OrderController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function store(OrderCreateRequest $request)
+    public function store(OrderRequest $request)
     {
 
 

@@ -64,7 +64,7 @@
             {!! Former::file('file','File đính kèm')->accept('doc', 'docx', 'xls', 'xlsx', 'pdf') !!}
         </div>
         <div class="col-sm-4">
-            {!! Former::text('customer_name', 'Tên trinh sát')->addClass('input-sm'); !!}
+            {!! Former::text('customer_name', 'Tên trinh sát phối hợp')->addClass('input-sm'); !!}
             {!! Former::text('customer_phone', 'Số điện thoại TS')
                 ->append('<i class="fa fa-phone"></i>')
                 ->addClass('input-sm phone'); 
@@ -128,8 +128,8 @@
                     <tr class="success">
                         <th class="text-center">STT</th>
                         <th class="text-center">Ngày tháng</th>
-                        <th class="text-center">Số Cv đến</th>
-                        <th class="text-center">Số Cv đi</th>
+                        <th class="text-center">Số Cv <br>Đơn vị y/c</th>
+                        <th class="text-center">Số Cv PA71<br>KH-BP2</th>
                         <th class="text-center" width="10%">Tên đối tượng</th>
                         <th class="text-center" width="10%">Số điện thoại/IMEI</th>
                         <th class="text-center">Loại ĐT</th>
